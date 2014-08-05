@@ -64,16 +64,16 @@ if [[ -z $version_id ]]; then
 
   # 网站上最低支持版本13.0，低于这个版本则报错
   if [[ $version_id < 13.0 ]]; then
-    echo "当前版本$version_id 太低因而不被支持。"
+    echo "EE: 当前版本$version_id 太低因而不被支持。"
     exit 1
   fi
 fi
 
 # 构造目标目录
-target_dir=/tmp/multilib_$version_id
+target_dir="/tmp/multilib_$version_id"
 
 # 下载multilib 安装包
-lftp -c "open http://slackware.com/~alien/multilib; mirror -c -e $version_id $target_dir;"
+lftp -c "open http://slackware.com/~alien/multilib/; mirror -c -e $version_id $target_dir;"
 
 # 安装multilib 安装包
 find $target_dir -name '*.t?z' -exec upgradepkg --reinstall --install-new {} \;
