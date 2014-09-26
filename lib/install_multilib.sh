@@ -38,7 +38,7 @@ EOM
   fi
 
   # 安装
-  /usr/bin/sudo /usr/bin/find "$cache_directory" \
+  /usr/bin/find "$cache_directory" \
     -name '*.t?z' \
     -exec /sbin/upgradepkg --reinstall --install-new {} \;
 
@@ -62,7 +62,7 @@ EOM
     fi
   fi
   if [[ 'true' == $delete ]]; then
-    /usr/bin/sudo /usr/bin/rm -rf $cache_directory
+    /usr/bin/rm -rf $cache_directory
   fi
 }
 
