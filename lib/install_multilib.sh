@@ -40,8 +40,7 @@ EOM
   # 安装
   /usr/bin/sudo /usr/bin/find "$cache_directory" \
     -name '*.t?z' \
-    -exec upgradepkg \
-    --reinstall --install-new {} \;
+    -exec /sbin/upgradepkg --reinstall --install-new {} \;
 
   # 清理：Slackware 的/tmp 目录默认不是tmpfs 的挂载点
   title='选择'
