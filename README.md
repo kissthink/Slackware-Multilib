@@ -12,5 +12,5 @@ https://github.com/iSpeller/Slackware-Multilib/issues
     sudo ./install.sh
 
 #运行截图
-![截图1](screenshtos/screenshot1.png?raw=true)
+![截图1](screenshots/screenshot1.png?raw=true)
 
