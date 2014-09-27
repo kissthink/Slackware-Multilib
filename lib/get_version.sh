@@ -14,11 +14,12 @@ function get_version () {
 
   use_dialog=$1
   shift
-
   work_directory=$1
   result_file=$work_directory/result
   version_file=$work_directory/version
   shift
+
+  alias dialog='/usr/bin/dialog'
 
   my_version=$(sed -n 's/slackware \(.\+\)/\1/ip' /etc/slackware-version)
 

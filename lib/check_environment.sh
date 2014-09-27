@@ -12,6 +12,8 @@ function check_environment {
   use_dialog=$1
   shift
 
+  alias dialog='/usr/bin/dialog'
+
   # 无root 权限则退出
   if [[ 'root' != $USER ]]; then
     title='错误'

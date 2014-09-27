@@ -17,9 +17,13 @@ function get_arch () {
   work_directory=$1
   arch_file=$work_directory/arch
   shift
-  arch=$(/usr/bin/uname -m)
+  arch=$(uname -m)
 
-  if ! echo $arch | /usr/bin/grep -P '64' >/dev/null 2>&1; then
+  alias dialog='/usr/bin/dialog'
+  alias uname='/usr/bin/uname'
+  alias grep='/usr/bin/grep'
+
+  if ! echo $arch | grep -P '64' >/dev/null 2>&1; then
     title='错误'
     msgbox='当前系统不是64 位系统。'
 

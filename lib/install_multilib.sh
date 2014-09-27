@@ -19,8 +19,13 @@ function install_multilib () {
   version=$1
   shift
 
+  alias dialog='/usr/bin/dialog'
+  alias lftp='/usr/bin/lftp'
+  alias find='/usr/bin/find'
+  alias rm='/usr/bin/rm'
+
   # 下载Multilib 安装包
-  /usr/bin/lftp -c "open http://slackware.com/~alien/multilib/; mirror -c -e $version $cache_directory;"
+  lftp -c "open http://slackware.com/~alien/multilib/; mirror -c -e $version $cache_directory;"
   if [[ 0 != $? ]]; then
     title='错误'
     msgbox=$(
@@ -38,7 +43,7 @@ EOM
   fi
 
   # 安装
-  /usr/bin/find "$cache_directory" \
+  find "$cache_directory" \
     -name '*.t?z' \
     -exec /sbin/upgradepkg --reinstall --install-new {} \;
 
@@ -62,7 +67,7 @@ EOM
     fi
   fi
   if [[ 'true' == $delete ]]; then
-    /usr/bin/rm -rf $cache_directory
+    rm -rf $cache_directory
   fi
 }
 

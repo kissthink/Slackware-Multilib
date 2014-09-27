@@ -11,8 +11,6 @@ source $PWD/lib/get_version.sh
 source $PWD/lib/get_arch.sh
 source $PWD/lib/install_multilib.sh
 
-alias dialog='/usr/bin/dialog'
-
 version=''
 target=''
 arch=''
