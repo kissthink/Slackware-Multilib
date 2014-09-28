@@ -15,7 +15,7 @@ function check_environment {
   alias dialog='/usr/bin/dialog'
 
   # 无root 权限则退出
-  if [[ 'root' != $USER ]]; then
+  if [[ 0 -ne $UID ]]; then
     title='错误'
     msgbox='请使用root 权限运行脚本。'
 

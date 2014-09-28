@@ -6,10 +6,10 @@
 #                                                       #
 #             Copyright (C) 2014 iSpeller               #
 # ===================================================== #
-source $PWD/lib/check_environment.sh
-source $PWD/lib/get_version.sh
-source $PWD/lib/get_arch.sh
-source $PWD/lib/install_multilib.sh
+source lib/check_environment.sh
+source lib/get_version.sh
+source lib/get_arch.sh
+source lib/install_multilib.sh
 
 version=''
 target=''
