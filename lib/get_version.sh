@@ -32,7 +32,7 @@ function get_version () {
   switch_5='退出'
 
   while true; do
-    if [[ 'true' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --default-item 1 \
             --menu "$menu" 15 50 5 \
             1 "$switch_1" \
@@ -67,15 +67,37 @@ function get_version () {
         break
         ;;
       3)
-        title='版本'
-        inputbox='输入要指定的版本号'
-        if [[ 'true' == $use_dialog ]]; then
-          dialog --title "$title" --inputbox "$inputbox" 10 50\
-            2>$result_file
-          my_version=$(cat $result_file)
-        else
-          read -p "$inputbox：" my_version
-        fi
+        while true; do
+          title='版本'
+          inputbox='输入要指定的版本号'
+          if [[ true == $use_dialog ]]; then
+            dialog --title "$title" --inputbox "$inputbox" 10 50\
+              2>$result_file
+            if [[ 1 == $? ]]; then
+              exit 0
+            fi
+            my_version=$(cat $result_file)
+          else
+            read -p "$inputbox：" my_version
+          fi
+
+          if [[ -z $my_version ]]; then
+            continue
+          fi
+
+          if [[ $my_version < 13.0 ]]; then
+            title='错误'
+            msgbox='脚本不支持Slackware 13.0 以下的版本。'
+            if [[ true == $use_dialog ]]; then
+              dialog --title "$title" --msgbox "$msgbox" 10 50
+            else
+              echo "$msgbox"
+            fi
+          else
+            break
+          fi
+        done
+
         break
         ;;
       4)
@@ -91,7 +113,7 @@ function get_version () {
   您应该与此程序一道收到了一份GNU 通用公共许可协议的副本；如果没有，请查看<http://www.gnu.org/licenses/>。
 EOM
         )
-        if [[ 'true' == $use_dialog ]]; then
+        if [[ true == $use_dialog ]]; then
           dialog --title "$title" --msgbox "$msgbox" 20 50
         else
           echo "$msgbox"

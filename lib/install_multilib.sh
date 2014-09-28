@@ -30,11 +30,12 @@ function install_multilib () {
     title='错误'
     msgbox=$(
       cat <<EOM
-无法下载Multilib 安装包。
-可能是因为版本号不正确。
+无法下载对应的Multilib 安装包，可能是因为：
+1. 无法连接到网络
+2. 版本号不正确
 EOM
     )
-    if [[ 'true' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --msgbox "$msgbox" 10 50
     else
       echo "$msgbox"
@@ -50,23 +51,23 @@ EOM
   # 清理：Slackware 的/tmp 目录默认不是tmpfs 的挂载点
   title='选择'
   yesno="是否删除缓存的Multilib 安装包（$cache_directory）？"
-  if [[ 'true' == $use_dialog ]]; then
+  if [[ true == $use_dialog ]]; then
     dialog --title "$title" --yesno "$yesno" 5 50;
     if [[ 0 == $? ]]; then
-      delete='true'
+      delete=true
     else
-      delete='false'
+      delete=false
     fi
   else
     read -p "$yesno（y/n）" delete
     delete=$(echo $delete | tr '[:lower:]' '[:upper:]')
     if [[ 'Y' == $delete ]]; then
-      delete='true'
+      delete=true
     else
-      delete='false'
+      delete=false
     fi
   fi
-  if [[ 'true' == $delete ]]; then
+  if [[ true == $delete ]]; then
     rm -rf $cache_directory
   fi
 }

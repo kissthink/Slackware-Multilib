@@ -21,9 +21,9 @@ cache_directory=''
 # MAIN () {
   # 决定是否使用dialog
   if [[ -x /usr/bin/dialog ]]; then
-    use_dialog='true'
+    use_dialog=true
   else
-    use_dialog='false'
+    use_dialog=false
   fi
 
   # 设定工作目录

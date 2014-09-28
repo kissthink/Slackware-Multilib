@@ -19,7 +19,7 @@ function check_environment {
     title='错误'
     msgbox='请使用root 权限运行脚本。'
 
-    if [[ 'true' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --msgbox "$msgbox" 5 50
     else
       echo "$msgbox"
@@ -38,7 +38,7 @@ function check_environment {
 EOM
     )
 
-    if [[ 'true' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --msgbox "$msgbox" 10 50
     else
       echo "$msgbox"
@@ -52,7 +52,7 @@ EOM
     title='错误'
     msgbox='lftp 指令未发现，请先安装lftp。'
 
-    if [[ 'true' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --msgbox "$msgbox" 5 50
     else
       echo "$msgbox"
