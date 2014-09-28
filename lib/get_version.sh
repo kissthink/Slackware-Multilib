@@ -51,7 +51,7 @@ function get_version () {
       echo 5 "$switch_5"
       while true; do
         read -p "请选择：" result
-        if [[ 0 < $result && 6 > $result ]]; then
+        if [[ 1 -le $result && 5 -ge $result ]]; then
           break
         fi
       done
@@ -85,7 +85,7 @@ function get_version () {
             continue
           fi
 
-          if [[ $my_version < 13.0 ]]; then
+          if [[ $my_version -lt 13.0 ]]; then
             title='错误'
             msgbox='脚本不支持Slackware 13.0 以下的版本。'
             if [[ true == $use_dialog ]]; then

@@ -27,7 +27,7 @@ function get_arch () {
     title='错误'
     msgbox='当前系统不是64 位系统。'
 
-    if [[ 'yes' == $use_dialog ]]; then
+    if [[ true == $use_dialog ]]; then
       dialog --title "$title" --msgbox "$msgbox" 10 50
     else
       echo "$msgbox"
