@@ -20,6 +20,8 @@ function get_version () {
   shift
 
   alias dialog='/usr/bin/dialog'
+  alias expr='/usr/bin/expr'
+  alias awk='/usr/bin/awk'
 
   my_version=$(sed -n 's/slackware \(.\+\)/\1/ip' /etc/slackware-version)
 
@@ -85,7 +87,19 @@ function get_version () {
             continue
           fi
 
-          if [[ $my_version -lt 13.0 ]]; then
+          if [[ ! $my_version =~ ^[0-9]+\.[0-9]+$ ]]; then
+            title='错误'
+            msgbox="\"$my_version\" 似乎不是一个合法的版本号。"
+            if [[ true == $use_dialog ]]; then
+              dialog --title "$title" --msgbox "$msgbox" 10 50
+            else
+              echo "$msgbox"
+            fi
+            continue
+          fi
+
+          if [[ true == $(awk --assign=my_version=$my_version --assign=min_version=13.0 \
+                              'BEGIN { print (my_version < min_version) ? "true" : "false" }') ]]; then
             title='错误'
             msgbox='脚本不支持Slackware 13.0 以下的版本。'
             if [[ true == $use_dialog ]]; then

@@ -68,7 +68,7 @@ EOM
     fi
   fi
   if [[ true == $delete ]]; then
-    rm -rf $cache_directory
+    rm --verbose --recursive --force $cache_directory
   fi
 }
 
